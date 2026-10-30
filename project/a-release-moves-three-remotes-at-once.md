@@ -25,7 +25,7 @@ git remote set-url --add --push origin git@github.com:BelType/<name>.git
 
 Codeberg is listed first, so a refused push stops before GitHub moves. A Codeberg push mirror (sync on commit) is the upgrade if work ever lands on Codeberg from somewhere other than this machine; it needs a GitHub token pasted into Codeberg by Egildo, which is why it is not the default. On GitHub, issues, the wiki and projects are turned off, and the description says it is a mirror and points to Codeberg.
 
-**npm publishes only from GitHub, by trusted publishing.** A package `@beltype/<name>` is published by the workflow `.github/workflows/release.yml` in `github.com/BelType/<name>`, through npm's trusted publishing (OpenID Connect, no token), with provenance. Never from a laptop, never with a token, never `npm publish` by hand. Each package's trusted publisher on npmjs.com names the organization `BelType`, the repository and that workflow file.
+**npm publishes only from GitHub, by trusted publishing.** A package `@beltype/<name>` is published by the workflow `.github/workflows/release.yml` in `github.com/BelType/<name>`, through npm's trusted publishing (OpenID Connect, no token), with provenance. Never from a laptop, never with a token, never `npm publish` by hand. Each package's trusted publisher on npmjs.com names the organization `BelType`, the repository and that workflow file. Corrected 2026-10-30: npm checks provenance against `repository.url` in `package.json`, which must therefore name `github.com/BelType/<name>`; Codeberg, the source, is named by `homepage` and `bugs`. An unpublished package has no settings page on npmjs.com, so its trusted publisher can be set only after a first version exists (measured 2026-10-30: `npmjs.com/package/@beltype/common/access` answers Not Found).
 
 **A release is one act: a tag.** The version in `package.json`, the tag `vX.Y.Z` and the heading in `CHANGELOG.md` agree, and the workflow refuses when they do not. Pushing the tag is the release: it lands on Codeberg, the mirror carries it to GitHub, the workflow publishes to npm. Each release needs Egildo's yes, given for that version. A version is never moved or reused; a mistake is fixed by the next patch.
 
@@ -44,6 +44,6 @@ Codeberg is listed first, so a refused push stops before GitHub moves. A Codeber
 ## Consequences
 
 - Each repository owes: the second push URL; `.github/workflows/release.yml`, the same file in every package repository; the trusted publisher on npmjs.com; the mirror's settings on GitHub.
-- Unchecked: whether npm lets a trusted publisher be configured before the package's first version exists. If it does not, the first version of each package needs one publish by another road, and that road is a ruling owed by Egildo.
+- The first version of each package needs one publish by another road, since a trusted publisher cannot be set before it; that road is a ruling owed by Egildo.
 - The standing rule that the Codeberg repositories stay private is withdrawn. The five histories were searched for tokens, keys and credential files on 2026-10-30 and held none.
 - The links in this record pinned to `github.com/egildo/beltype` point at a private repository, and read as dead links to anyone else until that repository is public or the records are re-pinned.
