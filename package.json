@@ -1,0 +1,11 @@
+{
+  "name": "@beltype/decisions",
+  "version": "0.1.0",
+  "private": true,
+  "description": "The BelType organization's decision records: one ruling per file, with its reasoning attached.",
+  "type": "module",
+  "license": "MIT",
+  "repository": { "type": "git", "url": "git+https://codeberg.org/BelType/decisions.git" },
+  "engines": { "node": ">=22" },
+  "scripts": { "test": "node --test 'test/*.test.ts'" }
+}

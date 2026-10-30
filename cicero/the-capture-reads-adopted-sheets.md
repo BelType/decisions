@@ -1,0 +1,46 @@
+# The capture reads adopted sheets
+
+**Status: Decided 2026-09-04, Executed 2026-09-04.**
+
+## Context
+
+BelType's editing tools built a preview environment in 2026-08-28 (P7) whose whole claim is that the environment of the preview IS the generation's closure, materialized: the pane's document links no author stylesheet at all, and the host constructs each CSS entry of the closure as a `CSSStyleSheet` and adopts the lot. That round's soundness review asked whether Cicero could live inside such a pane, measured the answer in headless Chromium 150, and got a no: `document.styleSheets` holds only the sheets a document links or embeds, and a constructed sheet handed to `adoptedStyleSheets` is not among them. This package's capture reads the author's whole `@page` world out of `document.styleSheets` — [`src/capture.js`](https://github.com/egildo/beltype/blob/42b348b547d269a217a7f193042fe216386a4650/packages/engine-cicero/src/capture.js)'s `readGeometryTable` and `neutralizeMarginBoxes`, and [`src/driver.js`](https://github.com/egildo/beltype/blob/42b348b547d269a217a7f193042fe216386a4650/packages/engine-cicero/src/driver.js)'s legacy `readPageGeometry` — so a dressed Cicero pane would have found no author `@page` rule and paginated against the shell's mechanics default while the author's `size` and `margin` sat in a sheet the engine could not see. Silently wrong pages, which is the failure a paginating engine can least afford.
+
+That round did the right thing with the finding: it exempted Cicero by name, wrote the reason into `packages/editing-tools/src/dressing.js` and its own DESIGN.md proposition 34, and stood an acceptance test as a tripwire — asserting both that the exempt pane keeps its link and that the author's `@page` rules stay reachable through `document.styleSheets`. It also said, in as many words, that the door is one line wide and that opening it is Cicero's own round. This is that round, and it comes with a customer: the editing tools' Cicero cut makes Cicero the one engine that package offers, so the exemption would have meant no dressed pane at all and the preview environment would have had no consumer left.
+
+The exemption was never a judgement about the engine's place — that is the marginalization doctrine, and it applies to Paged.js, which preprocesses stylesheet text it fetches BY URL and therefore genuinely cannot read a constructed sheet. Cicero's was a precondition discovered by measurement in a package that had no business editing this one.
+
+## Decision
+
+**The capture reads every sheet the document wears: `[...doc.styleSheets, ...doc.adoptedStyleSheets]`, document sheets first.** One exported helper in `capture.js` — `styleSheetsOf(doc)` — and three call sites: `readGeometryTable`, `neutralizeMarginBoxes`, and `driver.js`'s `readPageGeometry`. Nothing else about the capture changes: the same `CSSPageRule` filter, the same cross-origin `try`, the same specificity sort, the same measurement.
+
+**The order is the cascade's, not a preference.** CSSOM seats every adopted sheet after every document sheet, so document sheets come first here and `readGeometryTable`'s later-wins rule inside equal specificity remains the browser's own answer rather than this walk's opinion. A host that adopts an author sheet has said, by adopting it, that it comes after everything the document links — which is exactly the seat BelType's shell gives an author sheet anyway (mechanics < addendum < engine < author).
+
+**`neutralizeMarginBoxes` widens with the reader, and it must.** It closes the second channel a named page cannot close: once the press sheet renames every page, an author's bare `@page` rule would keep painting margin-box chrome the shadow DOM already delivers. A rule that arrives adopted rather than linked opens that channel exactly the same way, so the same walk has to reach it. Reading with one list and neutralizing with another would have been the bug this decision exists to prevent, one layer down.
+
+**Refused: reading adopted sheets only when `document.styleSheets` yields no `@page` rule.** It would make the engine's behaviour depend on whether the mechanics default happened to be present, which is the shell's business and not the engine's, and it would hide a real mixed case — an author sheet linked, a draft of it adopted — behind a fallback that never fires.
+
+**Refused: an option.** Whether a sheet is linked or adopted is a fact about the document the engine was handed, not a mode the host chooses. An engine that had to be told to look at half the CSSOM would be an engine whose readings depend on a flag.
+
+**Nothing in the tablet moves.** The Oracle posture already says the browser is the authority on what the document says; this is the walk catching up with a place the browser puts sheets. [`docs/css-paged-media-checklist.md`](https://github.com/egildo/beltype/blob/42b348b547d269a217a7f193042fe216386a4650/packages/engine-cicero/docs/css-paged-media-checklist.md) gains one row, because the checklist is where "how settled is this actually" lives.
+
+## Predictions
+
+Frozen on write. `src/` moved, so the battery runs at the close whatever the reasoning says — an unexplained stale pin reads as a real one ([cycle.md](https://github.com/egildo/beltype/blob/42b348b547d269a217a7f193042fe216386a4650/packages/engine-cicero/docs/cycle.md)).
+
+1. **No standing number moves. 25/25 gates, every tally unchanged, the pin re-recorded against this round's commit.** The reasoning, measured before this plan was written rather than assumed: [`src/root.js`](https://github.com/egildo/beltype/blob/42b348b547d269a217a7f193042fe216386a4650/packages/engine-cicero/src/root.js) adopts its own dressing sheet only inside `present()` — after the capture has run — and that sheet holds no `@page`; the press sheet is a `<style>` element and therefore a document sheet already. So in the venue, in the CLI and in every seed, `adoptedStyleSheets` is empty at the moment the capture walks it, and the concatenation adds nothing. *Breaks* on any tally moving, which would mean an adopted sheet exists somewhere nobody named.
+2. **A dressed Cicero pane paginates the AUTHOR's geometry.** The editing tools' acceptance test asserts it by measurement rather than by page count: the first `<beltype-page>` carries A4 at 96 dpi and the author's own `@page :first` top margin (60mm) and right-page inner margin (28mm), none of which the mechanics default (`size: A4; margin: 20mm`) can produce. *Breaks* if the page comes back at 20mm margins, which is exactly the silent failure the exemption existed to prevent.
+
+## Verdict
+
+**Prediction 1 held.** A complete battery — 25 gates in 17.1 minutes, 25 ok and 0 failed — reproduced every standing record with nothing moved: native 163 agree / 18 legal-divergence / 7 theirs-illegal / 11 unclassified / 1 reference-invalid; composed-v1 89 / 8 / 3; composed-v2 86 / 10 / 4; v3-native 43 / 5 / 1 unclassified / 1 theirs-illegal; v3-composed 28 / 1 / 1; v4 43 / 4 / 2 unclassified / 1 theirs-illegal; the three view gates at 50, 40 and 30 view-agree; every pass gate ok. The pin was re-recorded against this round's own commit. `adoptedStyleSheets` really is empty at capture time everywhere the battery looks, as the pre-plan measurement said.
+
+**Prediction 2 held, and the numbers are worth recording because they are what makes it a measurement.** In the editing tools' dressed pane the specimen's document carries **zero** author stylesheet links, one adopted sheet (`styles/specimen.css`), and Cicero paginates it in 5 pages. The first page measures **793.701 × 1121.52 px** — A4 at 96 dpi, less the 1 px print-safety inset on the height — with a top margin track of **226.772 px** and a left margin track of **105.827 px**. Those are `@page :first { margin-top: 60mm }` and `@page :right { margin-left: 28mm }`, read out of a sheet no `<link>` in that document mentions; the shell's mechanics default would have given 75.59 px on both. `whoSets('.running-mark', 'color')` names `styles/specimen.css:59` with `rgb(153, 153, 153)`. The tripwire test that asserted the exemption is inverted into the test that asserts the dressing, which is the honest way for a tripwire to end.
+
+## Consequences
+
+`capture.js` exports `styleSheetsOf` and uses it at both of its walks; `driver.js` imports it for `readPageGeometry`. The [checklist](https://github.com/egildo/beltype/blob/42b348b547d269a217a7f193042fe216386a4650/packages/engine-cicero/docs/css-paged-media-checklist.md) gains a row saying the geometry capture reads adopted sheets too, dated, with the reason.
+
+Next door, in BelType, the exemption goes: `packages/editing-tools` dresses Cicero's pane, its DESIGN.md propositions 34 and 35 are marked superseded in place, and the acceptance test that stood as the tripwire is inverted into the one that proves the dressing — same measurement, opposite expectation.
+
+What this does NOT do is make a constructed sheet fetchable, which is Paged.js's own reason for exemption and is untouched. And it does not widen anything else that walks the CSSOM: `measure.js` and `chase.js` build their probes in the same document and inherit adopted sheets through the cascade already, which is why they needed nothing here.

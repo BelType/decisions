@@ -1,0 +1,51 @@
+# A fixed box refuses only its own block
+
+**Status: Decided 2026-10-22, Executed 2026-10-22.** Convened by a measurement in the studio experiment the same day: every edit on the showcase document, a bold on one word included, reloaded the frame and ran its 76 pages whole.
+
+## Context
+
+`patch` (`seam/client.js`, *the run resumes from an entry*, build four) replaces the box an edit fell in and hands the host an address for `run({ resumeAt })`. It refuses, and the host reloads instead, when it cannot promise the replacement is sound. One of its refusals is coarse: it answers `null` whenever any stylesheet the document wears declares `position: fixed`, anywhere, for anything. The reason it was written that way is real. The intake lifts a fixed box out of the block that holds it (`fixedBoxes` walks every depth since case 46), so a presented block may hold one box fewer than the block the host compiled again, and a path of child indices would then name different elements in the two trees. The refusal protected the path. It did so by reading the sheet text, which says nothing about where the fixed boxes are.
+
+The studio's showcase declares `position: fixed` once, for a tag in one section of family VII. The console said so on each edit: `studio: reloading from the state — patch refused the replacement of box 8 path [2]`. The studio's own dock keeps its toggles' fixed position inline, in a shadow root, for exactly this reason (its `dock.js` says so); an author's sheet cannot be asked to.
+
+## Decision
+
+**The refusal names the block, not the document.** `patch` refuses a replacement for two reasons about fixed boxes, and for no other:
+
+1. **A fixed box was lifted from this block at intake.** The intake already records every box it moved, with the parent it took it from. It also records which top-level box each lifted fixed box came out of, and `patch` refuses when the edited top-level box is one of them: the presented block is missing a box the host's block has, and the paths disagree.
+2. **The replacement block holds a fixed box.** A host may have written one into a block that had none. After the replacement stands in the tree, the same predicate the intake uses (`isFixedBox`, through the `fixedBoxes` walk) is asked over the new block's descendants; a hit puts the old block back and refuses. The check is a computed style, so it is asked after `replaceWith` and never on a detached element.
+
+`declaresFixed` goes. A sheet this realm cannot read no longer counts as a refusal of every edit; what it could hide is a fixed box in the replacement, and reason 2 reads the box itself.
+
+**Refused**: keeping the sheet test as a fast path (it is the fault); a host-side exception for a studio's own machinery (the sheet is the author's); lifting fixed boxes out of the replacement inside `patch` (a patched block with a fixed box is a change to the intake's lists and the fixed layer, which is a run's work, not a patch's).
+
+## Predictions, frozen on write
+
+Judged at the round's close in the Verdict.
+
+1. **Red first.** A pin in `packages/essay/test/resume-patch.test.js`, or a sibling beside it, on the realistic document with one rule added to a sheet, `position: fixed` on a box inside a block other than the one edited: before the fold `patch` answers `null`; after it, an address, and `run({ resumeAt })`'s Ledger is byte-equal to a fresh frame's over the document edited the same way, in both modes.
+2. **The two refusals hold.** The same pin asks a patch of the block the fixed box was lifted from and a replacement that carries a new fixed box; both answer `null`, and the document stands as it was before the call (the old block in place).
+3. **Nothing standing moves.** Every gate in the battery reproduces its tally; `resume-patch`, `resume-after-the-lists-dissolve`, `rim`, `windowing` and the editing tools' `preview-resumes` pass unchanged.
+4. **The showcase patches.** In the studio experiment, a bold on a word in a section other than family VII's tag resumes instead of reloading (the console's `reloading from the state` line is absent), measured once by hand after the merge.
+
+## Consequences
+
+- **Displaced**: `declaresFixed` and the sentence in `patch`'s header that names a stylesheet as a reason.
+- **Owed**: the intake's record of which top-level box each lifted fixed box came from; the two refusals in `patchBox`; the pin; the header's new sentence; the checklist's row on `patch` where it lists the refusals; the CHANGELOG under this date; the studio's `dock.js` comment and the roster's trap line (`.claude/memory/paged-roster.md`), outside this repository and this round, once merged.
+- **Not owed here**: a patch that holds a fixed box (reason 2 stays a reload); a running element edited through `patch` (its own open item in the checklist).
+- **Where the content lives**: the mechanism in `seam/client.js`, the proof in `packages/essay/test/`, the status in the checklist, the story in the CHANGELOG.
+
+## Verdict
+
+Executed 2026-10-22 on `round/a-fixed-box-refuses-only-its-own-block`, the build `ae5d636d`. The pin is `packages/essay/test/resume-patch.test.js`, on the realistic document with `.titlepage .edition { position: fixed }` added in a `<style>`: the edition line is lifted out of the title page, the document's first top-level block.
+
+1. **Red first — HELD.** Before the fold, the patch of a paragraph on page two answered `null` in both modes, the pin's two new cases red on *patch answers the address of the box it replaced*. After it, an address, and `run({ resumeAt })`'s Ledger is byte-equal to a fresh frame's over the same edited document in both modes.
+2. **The two refusals hold — HELD.** A patch of the title page's heading answers `null`; a paragraph carrying a new `position: fixed` span answers `null` at its nested path, and so does its chapter carrying one at the top-level path. The old boxes stand where they stood, the chapter in the slot that held it, and a whole run afterwards cuts the Ledger it cut before the three calls. With either refusal removed, the pin goes red.
+3. **Nothing standing moves — HELD.** 26 of 26 gates in 10.2 min, pinned at `ae5d636d`: native 163/18/7/11/1, composed-v1 89/8/3, composed-v2 86/10/4, v3 43/5/1/1 and 28/1/1, v4 43/4/2/1, the view gates 50, 40 and 30. Root `npm test` 411 of 411, `npm run check` green, the engine 346, the essay 196 (`resume-patch`, `resume-after-the-lists-dissolve`, `rim` and `windowing` among them), the editing tools 105 (`preview-resumes` among them).
+4. **The showcase patches — HELD.** Measured in the studio experiment after the merge (2026-10-22, the engine linked from this checkout): a bold on a word on page 32 of the showcase applied without a reload, the console carrying no `reloading from the state` line and the frame keeping its state, 76 pages.
+
+**What the record did not predict.**
+
+- **A running element is lifted as a fixed box is, so it counts for reason 1.** Since *a running element is a named node* (amended 2026-10-21) a running element inside a block leaves it at intake by the same mechanism, and the sheet test never saw it, because the host rewrites `position: running()` into a custom property. The intake's record therefore names the top-level boxes either kind was lifted out of. Reason 2 already counted both, since `isFixedBox` answers both.
+- **A top-level box put back loses its slot.** Chromium drops a node's manual slot assignment when it leaves its host (measured 2026-10-22: the chapter came back with `assignedSlot` null). A refused top-level replacement is first parked, as the accepted one is, so that its style can be asked; the old box then goes back to the slot that held it, with that slot's assigned nodes as they were.
+- **Reason 2 asks `holdsFixedBox`**, the walk `root.js` asks to choose between the original and a stripped clone, plus `isFixedBox` on the replacement itself. It does not skip `__beltype*` ids, `<style>` or `<script>` as `fixedBoxes` does, since a host's replacement carries none of the engine's litter.
