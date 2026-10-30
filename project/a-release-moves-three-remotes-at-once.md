@@ -44,6 +44,6 @@ Codeberg is listed first, so a refused push stops before GitHub moves. A Codeber
 ## Consequences
 
 - Each repository owes: the second push URL; `.github/workflows/release.yml`, the same file in every package repository; the trusted publisher on npmjs.com; the mirror's settings on GitHub.
-- The first version of each package needs one publish by another road, since a trusted publisher cannot be set before it; that road is a ruling owed by Egildo.
+- The first version of each package is published by hand by Egildo, `npm publish --access public` from a clean checkout of its tag, signed in with his security key, without provenance (his ruling, 2026-10-30); the secretary then sets its trusted publisher, and every later version goes through the workflow. A token is not used even once.
 - The standing rule that the Codeberg repositories stay private is withdrawn. The five histories were searched for tokens, keys and credential files on 2026-10-30 and held none.
 - The links in this record pinned to `github.com/egildo/beltype` point at a private repository, and read as dead links to anyone else until that repository is public or the records are re-pinned.
