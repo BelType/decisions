@@ -1,6 +1,6 @@
 # A writer in a worker holds no frame
 
-**Status: Decided 2026-11-03.** Decided by Egildo on the Rust writer's main thread, the sixth of his rulings of 2026-11-03 on that round, after its stage 9 measured forme holding the page. Amends Caster's *the writer pauses after 50 ms of work* (S93) and applies *the capability registry never falls back* (S6) to the worker. Builds on [the same list prints the same bytes](the-same-list-prints-the-same-bytes.md).
+**Status: Decided 2026-11-03, Executed 2026-11-03.** Executed in Caster on the branch `round/rust-writer`, two commits; Caster's record of it is the amendment to S93 in [`DESIGN.md`](https://codeberg.org/BelType/caster/src/commit/b5faed5224b347a611445b747f27ba069866e33e/DESIGN.md), which carries the measured numbers. Decided by Egildo on the Rust writer's main thread, the sixth of his rulings of 2026-11-03 on that round, after its stage 9 measured forme holding the page. Amends Caster's *the writer pauses after 50 ms of work* (S93) and applies *the capability registry never falls back* (S6) to the worker. Builds on [the same list prints the same bytes](the-same-list-prints-the-same-bytes.md).
 
 ## Context
 
@@ -22,3 +22,5 @@ The ruling is written here first, and Caster's DESIGN.md records it as an amendm
 - A refusal of forme's reaches the page as the same refusal, with the same sentence and the same list item, so `print()` still names the block.
 - A host that prints with forme must serve the worker's script and the glue beside Caster's modules and allow a module worker from its own origin (`worker-src`), and allow WebAssembly (`'wasm-unsafe-eval'`); a page that forbids either is refused by name, naming the `forme` capability and the `writer` flag.
 - The oracle keeps its 50 ms pauses until its retirement; the amendment changes nothing it writes.
+
+Measured at the execution, in Chromium 153: the paper writes in 39.5 ms end to end through the worker, where it took 30 ms on the main thread, and the main thread is held at most 3.6 ms; the 300-page list writes in 828 ms and holds the main thread at most 34 ms, where it held it 764 ms; the handoff alone is 10.6 ms. The worker's file is node's byte for byte on all 14 documents of Caster's corpus.
