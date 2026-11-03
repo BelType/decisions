@@ -1,6 +1,6 @@
 # PDF/UA-2 is a flag, not a given
 
-**Status: Decided 2026-11-03.** Decided by Egildo on the Rust writer's cff2 fixture, the ninth of his rulings of 2026-11-03 on that round, after Typst's `--pdf-standard`, WeasyPrint's `--pdf-variant` and Prince's `--pdf-profile`. Builds on [the printer guesses, says so, and withdraws the claim](the-printer-guesses-says-so-and-withdraws-the-claim.md), which it leaves as it is, and on [the same list prints the same bytes](the-same-list-prints-the-same-bytes.md), whose display list already carries the claim as data.
+**Status: Decided 2026-11-03, Executed 2026-11-03.** Executed in Caster on the branch `round/rust-writer`, three commits, and in forme, two; Caster's record of it is *PDF/UA-2 is a flag, not a given* (S103) in [`DESIGN.md`](https://codeberg.org/BelType/caster/src/commit/9a5ede62b1966ca325dc8e311f39ee813aa6a7a0/DESIGN.md), which carries the measured numbers. Decided by Egildo on the Rust writer's cff2 fixture, the ninth of his rulings of 2026-11-03 on that round, after Typst's `--pdf-standard`, WeasyPrint's `--pdf-variant` and Prince's `--pdf-profile`. Builds on [the printer guesses, says so, and withdraws the claim](the-printer-guesses-says-so-and-withdraws-the-claim.md), which it leaves as it is, and on [the same list prints the same bytes](the-same-list-prints-the-same-bytes.md), whose display list already carries the claim as data.
 
 ## Context
 
@@ -29,4 +29,4 @@ The other engines ask the author which standard to claim: Typst's `--pdf-standar
 - Caster's flag table gains the row, its DESIGN.md records the ruling as a proposition with the next free number, and both writers honour the gap rule; the cff2 document alone is re-recorded, and every other corpus file stays byte for byte what it was.
 - A host that wants a file claiming nothing asks for `'none'`; the default prints every document that printed before, byte for byte, except one whose face has no space glyph, which is now refused where it printed `.notdef` under a claim it broke.
 - Only two values exist. A PDF/A or a PDF/UA-1 claim is a new value when a customer asks for one, with its own measurement.
-- Open, not this record's: the spelling of the Well-Tagged PDF declarations' URIs, where the WTPDF 1.0.0 text and veraPDF disagree; forme keeps veraPDF's spelling until Egildo rules.
+- The spelling of the Well-Tagged PDF declarations' URIs, where the WTPDF 1.0.0 text and veraPDF disagree, was open when this was written; corrected 2026-11-03: Egildo ruled the same day that forme writes both spellings, four entries under `'ua-2'` and none under `'none'`, and forme's README records the evidence.
