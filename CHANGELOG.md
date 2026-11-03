@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- **A definition is proved by two strangers** (project, 2026-11-03): the display list becomes a definition of its own in `codeberg.org/BelType/common`, a workspace of four packages, with a shared corpus and a shared suite that Caster's writer and forme pass as equals, each with its own expectation file; Egildo's fourteen rulings and the sequencing ruling that the image-handling round lands first, and the seven refusals.
+- **The same list prints the same bytes, amended again** (project, 2026-11-03): ruling 1 is superseded, the lists, the pool, the reference files and the refusal cases move from Caster to `@beltype/display-list-corpus`; Caster keeps the recording door and its report snapshots.
 - **PDF/UA-2 is a flag, not a given** (project, 2026-11-03): Caster's `standard` flag, `'ua-2'` by default, claims PDF/UA-2 and both Well-Tagged PDF declarations and refuses by name a word gap that would be glyph 0; `'none'` claims nothing and writes such a gap as positioning with no glyph. The list carries the claim as data already and stays at version 6; the cff2 fixture is swapped for a CFF2 face with a space.
 - **A writer in a worker holds no frame** (project, 2026-11-03): forme, the Rust writer, writes in a dedicated worker for every write in a page and holds no frame; a page whose policy forbids the worker is refused by name, never written on the main thread; in node the write stays a direct call. Amends Caster's *the writer pauses after 50 ms of work*.
 - **The same list prints the same bytes, amended** (project, 2026-11-03): ruling 6 takes PNG decoding before the list, beside WebP, AVIF and GIF, so the Rust writer links no PNG decoder and its size ceiling stays; the display list goes to version 6.
