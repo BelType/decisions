@@ -33,6 +33,7 @@ One decision per file, named for what it decided, never rewritten. A reversal is
 - [The same list prints the same bytes](the-same-list-prints-the-same-bytes.md) — Caster's display list closed: the writer is a function of the list alone (widths, date, tree, images and options in it; no DOM, clock or browser API in reach) and returns typed records; the corpus committed in Caster, replayed in node byte for byte; the door for a Rust writer.
 - [A release moves three remotes at once](a-release-moves-three-remotes-at-once.md) — Codeberg is the source, `github.com/BelType` its mirror by two push URLs, `@beltype` on npm published only by GitHub's trusted publishing; a tag is the release, Egildo's yes for each, and every repository is public from 2026-10-30.
 - [A writer in a worker holds no frame](a-writer-in-a-worker-holds-no-frame.md) — forme writes in a dedicated worker for every write in a page, the page awaiting a promise; a page that forbids the worker is refused by name, never written on the main thread; node writes directly. Amends Caster's *the writer pauses after 50 ms of work* (S93).
+- [PDF/UA-2 is a flag, not a given](pdf-ua-2-is-a-flag-not-a-given.md) — Caster's `standard: 'ua-2' | 'none'`, default `'ua-2'`: under `'ua-2'` the file claims PDF/UA-2 and both Well-Tagged PDF declarations and a word gap that would be glyph 0 is refused by name; under `'none'` the file is tagged and claims nothing, and the gap is positioning with no glyph. *The printer guesses, says so, and withdraws the claim* stays as it is.
 
 ## The genre
 

@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **PDF/UA-2 is a flag, not a given** (project, 2026-11-03): Caster's `standard` flag, `'ua-2'` by default, claims PDF/UA-2 and both Well-Tagged PDF declarations and refuses by name a word gap that would be glyph 0; `'none'` claims nothing and writes such a gap as positioning with no glyph. The list carries the claim as data already and stays at version 6; the cff2 fixture is swapped for a CFF2 face with a space.
 - **A writer in a worker holds no frame** (project, 2026-11-03): forme, the Rust writer, writes in a dedicated worker for every write in a page and holds no frame; a page whose policy forbids the worker is refused by name, never written on the main thread; in node the write stays a direct call. Amends Caster's *the writer pauses after 50 ms of work*.
 - **The same list prints the same bytes, amended** (project, 2026-11-03): ruling 6 takes PNG decoding before the list, beside WebP, AVIF and GIF, so the Rust writer links no PNG decoder and its size ceiling stays; the display list goes to version 6.
 - **The same list prints the same bytes** (project, 2026-11-02): Caster's display list closed, the writer a function of the list alone, the corpus committed and replayed in node; Egildo's eight rulings for the round and the four refusals. The first ruling written here first, as the README says.
