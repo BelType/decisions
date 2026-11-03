@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **The same list prints the same bytes, amended** (project, 2026-11-03): ruling 6 takes PNG decoding before the list, beside WebP, AVIF and GIF, so the Rust writer links no PNG decoder and its size ceiling stays; the display list goes to version 6.
 - **The same list prints the same bytes** (project, 2026-11-02): Caster's display list closed, the writer a function of the list alone, the corpus committed and replayed in node; Egildo's eight rulings for the round and the four refusals. The first ruling written here first, as the README says.
 
 ## 0.1.0 — 2026-10-30
