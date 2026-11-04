@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **The same list prints the same bytes, amended a third time** (project, 2026-11-04): under Caster's opt-in `convertImages: 'cmyk'` an image may be converted to the output intent's CMYK in the page, after its reduction, through the vendored Little-CMS, and reaches the list as `DeviceCMYK` samples; the list goes to version 7, and the definition is cut at 7.0.0.
 - **A definition is proved by two strangers** (project, 2026-11-03): the display list becomes a definition of its own in `codeberg.org/BelType/common`, a workspace of four packages, with a shared corpus and a shared suite that Caster's writer and forme pass as equals, each with its own expectation file; Egildo's fourteen rulings and the sequencing ruling that the image-handling round lands first, and the seven refusals.
 - **The same list prints the same bytes, amended again** (project, 2026-11-03): ruling 1 is superseded, the lists, the pool, the reference files and the refusal cases move from Caster to `@beltype/display-list-corpus`; Caster keeps the recording door and its report snapshots.
 - **PDF/UA-2 is a flag, not a given** (project, 2026-11-03): Caster's `standard` flag, `'ua-2'` by default, claims PDF/UA-2 and both Well-Tagged PDF declarations and refuses by name a word gap that would be glyph 0; `'none'` claims nothing and writes such a gap as positioning with no glyph. The list carries the claim as data already and stays at version 6; the cff2 fixture is swapped for a CFF2 face with a space.
