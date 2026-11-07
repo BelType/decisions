@@ -48,6 +48,7 @@ Work that runs against evidence also carries **predictions frozen on write**, ea
 A file is named for what it decided, and that name is how the decision is referred to forever after. Numbers encode position, which moves; names encode identity, which does not. A number must also be looked up before a sentence containing it means anything.
 
 This is about identity, not arithmetic. **A measured value is not a name** — page counts, durations, byte sizes and tallies belong in these entries exactly as measured.
+- [A fragmented view gives a leaf a node view](a-fragmented-view-gives-a-leaf-a-node-view.md) — fragview admits a node view for a leaf only, the host's element shown once and kept by `moveBefore`, a stand-in from `toDOM` in every measuring copy and in print; a block's is refused by name, and the overlay stays the host's pattern.
 
 ## What an entry is not
 
