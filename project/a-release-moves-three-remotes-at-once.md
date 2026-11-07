@@ -1,6 +1,6 @@
 # A release moves three remotes at once
 
-**Status: Decided 2026-10-30.** Amended 2026-11-07: npm is published by hand, and trusted publishing, the workflow and the token go (below).
+**Status: Decided 2026-10-30.** Amended 2026-11-07, morning: npm is published by hand. Amended again the same evening: the token workflow stands, and the morning's amendment is withdrawn (below).
 
 ## Context
 
@@ -61,3 +61,17 @@ Egildo ruled trusted publishing out on 2026-11-07: it is a nightmare to run. The
 **What stands.** Codeberg as the source, GitHub as a mirror by two push URLs, `@beltype` on npm and not GitHub Packages, Egildo's yes for each version, everything public, siblings meeting by exact version.
 
 **The cost is said here.** A package on npm carries no attestation, so a pinned version proves its source only through the tag that names it, which is what the integration review asked about. A reader who needs more can compare the tarball with a checkout of the tag. This returns if a customer asks for attestations, by the same workflow, and not before.
+
+## Amended 2026-11-07, evening — the token workflow stands
+
+Egildo ruled the same evening, after another session renewed the token: the morning's amendment is withdrawn. Caster 0.2.0 had been published at 16:26 through the token workflow, from a tag whose tree still held it, with provenance; that is the organisation that worked, and it is the one that stands.
+
+**A release is a tag, and the workflow publishes.** Egildo bumps `package.json`, adds the `## X.Y.Z` heading to `CHANGELOG.md` and commits. `sh scripts/release.sh` refuses a dirty tree, a missing heading, an existing tag or a version already on npm, and otherwise tags `vX.Y.Z` and pushes, Codeberg first, then GitHub. `.github/workflows/release.yml` fires on the tag, checks that the tag, `package.json` and the CHANGELOG agree, and runs `npm publish --provenance`. In `common` the tag is `common-vX.Y.Z` and the script takes the package directory.
+
+**One token, `beltype-ci`.** A granular npm token covering the `@beltype` scope, `prosemirror-beltype` and `prosemirror-fragview`, read and write, direct publishing, bypass 2FA, set as the `NPM_TOKEN` secret in the six package repositories (`cicero`, `caster`, `cli`, `common`, `prosemirror-beltype`, `prosemirror-fragview`), used only on tag pushes and only in the publish step. It expires 2027-02-05. `specimens` has no secret and its workflow was the trusted-publishing one: it publishes by hand or gets the secret and the same workflow.
+
+**Why not trusted publishing**, in Egildo's words: an unvalidated trusted publisher expires after 48 hours, and cicero's disappeared even after a successful publish; registering one costs a passkey tap each time; npm 12.2.2 broke the trust command's positional argument. The registration step is gone from the script.
+
+**A deadline.** npm ends direct publishing for bypass-2FA tokens in January 2027. Before then: back to trusted publishing, or staged publishing where a passkey approves each release.
+
+**What returns.** `.github/workflows/release.yml` and the check-only `scripts/release.sh` in the six repositories, restored on 2026-11-07 by reverting the morning's commit; the `NPM_TOKEN` secrets; provenance. What the morning said about the laptop as a door, about the tag coming last and about the cost of no attestation falls with it.
