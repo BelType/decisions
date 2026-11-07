@@ -1,6 +1,6 @@
 # A release moves three remotes at once
 
-**Status: Decided 2026-10-30.** Amended 2026-11-07, morning: npm is published by hand. Amended again the same evening: the token workflow stands, and the morning's amendment is withdrawn (below).
+**Status: Decided 2026-10-30.** Amended 2026-11-07, morning: npm is published by hand. Amended again the same evening: the token workflow stands, and the morning's amendment is withdrawn. Amended a third time, late that evening: `specimens` joins, and the way to bring a repository in is written down (both below).
 
 ## Context
 
@@ -75,3 +75,20 @@ Egildo ruled the same evening, after another session renewed the token: the morn
 **A deadline.** npm ends direct publishing for bypass-2FA tokens in January 2027. Before then: back to trusted publishing, or staged publishing where a passkey approves each release.
 
 **What returns.** `.github/workflows/release.yml` and the check-only `scripts/release.sh` in the six repositories, restored on 2026-11-07 by reverting the morning's commit; the `NPM_TOKEN` secrets; provenance. What the morning said about the laptop as a door, about the tag coming last and about the cost of no attestation falls with it.
+
+## Amended 2026-11-07, late evening — `specimens` joins, and how a repository is brought in
+
+`specimens` took the same workflow and script, and published 0.1.1 through them with provenance. Its secret is a second token, `beltype-ci-specimens-2`: the first one's value was never captured, and an npm token's value is shown once, at creation, so the existing `beltype-ci` could not be copied into a new repository, and could not be deleted without breaking the six that use it. It covers the `@beltype` scope only, bypass 2FA, read and write, and expires 2027-02-05 like the other. The unused first token was deleted. Names of tokens must be unique.
+
+**To bring a repository in**, which is a matter of minutes:
+
+1. Copy `.github/workflows/release.yml` and `scripts/release.sh` from a finished repository. `release.sh` is edited nowhere. In the workflow, the `pnpm install` step goes if the repository has no build.
+2. `package.json` carries `name`, `version`, `license`, `repository` (the GitHub URL, which provenance is checked against), `publishConfig.access: public` and a `files` list.
+3. `CHANGELOG.md` has a `## X.Y.Z` heading for each release, or the workflow refuses the tag.
+4. The remote has two push URLs, Codeberg first and GitHub second, as under the decision above. Adding the first one replaces the default, so Codeberg is added explicitly, and `git remote -v` is read afterwards.
+5. The `NPM_TOKEN` secret is set from a token that covers the package: `@beltype` covers every scoped package; an unscoped name must be listed on the token. The token is checked first with `npm whoami --//registry.npmjs.org/:_authToken="$(pbpaste)"` and its length is 40 (`pbpaste | wc -c`), then stored with `pbpaste | gh secret set NPM_TOKEN -R <org>/<repo>`, then the clipboard is cleared with `pbcopy < /dev/null`.
+6. A release is the version bump, the CHANGELOG heading and the commit, then `sh scripts/release.sh` (in `common`, `sh scripts/release.sh common`).
+
+**Handling the token.** It is never pasted into chat, and the page that shows it is never photographed. npm's copy icon often leaves the wrong text on the clipboard (measured twice on 2026-11-07, 6 characters); a script on the page that calls `navigator.clipboard.writeText` and returns only the length works, and keeps the value out of the transcript. The secret is used only in the publish step and only on tag pushes.
+
+**The deadline stands.** Both tokens expire 2027-02-05, and npm ends direct publishing for bypass-2FA tokens in January 2027. The choice between trusted publishing again and staged publishing with a passkey for each release is owed before then, and the date to act is about 2027-01-25.
