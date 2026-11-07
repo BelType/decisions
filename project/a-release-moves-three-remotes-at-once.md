@@ -1,6 +1,6 @@
 # A release moves three remotes at once
 
-**Status: Decided 2026-10-30.**
+**Status: Decided 2026-10-30.** Amended 2026-11-07: npm is published by hand, and trusted publishing, the workflow and the token go (below).
 
 ## Context
 
@@ -47,3 +47,17 @@ Codeberg is listed first, so a refused push stops before GitHub moves. A Codeber
 - The first version of each package is published by hand by Egildo, `npm publish --access public` from a clean checkout of its tag, signed in with his security key, without provenance (his ruling, 2026-10-30); every later version goes through the workflow. Since npm drops a trusted publisher that has not published within 2 days, the secretary sets a package's trusted publisher (GitHub Actions, `BelType/<name>`, `release.yml`, `npm publish` allowed and nothing else) only just before that package's first release through the workflow, never ahead. A token is not used even once.
 - The standing rule that the Codeberg repositories stay private is withdrawn. The five histories were searched for tokens, keys and credential files on 2026-10-30 and held none.
 - The links in this record pinned to `github.com/egildo/beltype` point at a private repository, and read as dead links to anyone else until that repository is public or the records are re-pinned.
+
+## Amended 2026-11-07 — npm is published by hand
+
+Egildo ruled trusted publishing out on 2026-11-07: it is a nightmare to run. The record asked for a trusted publisher set by hand in npm's web interface just before each package's release, which npm drops after 2 days unused, and a workflow in a mirror's repository to act on it. What happened instead: every release workflow but `specimens`' moved to a token the record refused, a granular token of 90 days per repository; the workflow never published Caster or the CLI, and its last Caster run took a public tag `v0.2.0` to an `E404` with nothing on npm behind it, so that version number is spent. npm shows attestations only on common 0.1.1 and 0.1.2 and fragview 0.1.1, read on 2026-11-07. The rule had stopped describing what happens.
+
+**Every version is published as the first one always was.** Egildo runs `sh scripts/release.sh`, signed in to npm with his security key. An agent does not publish. The script takes a clean checkout of HEAD, installs from the lockfile, runs the tests, publishes with `npm publish --access public`, and only then tags and pushes. No token is written anywhere, since the security key is the door.
+
+**The tag comes last.** A tag is still never moved or reused, and the version in `package.json`, the tag and the heading in `CHANGELOG.md` still agree, now checked by the script. Publishing before tagging means a failed publish leaves nothing public, which is the failure that spent `v0.2.0`. A failed push leaves a version on npm with no public tag, and the script says the command that finishes it.
+
+**What falls.** The ruling *npm publishes only from GitHub, by trusted publishing*; *a release is one act: a tag*, whose act is now the script; `.github/workflows/release.yml` in every package repository; the `NPM_TOKEN` secrets; the secretary's work on trusted publishers; the refusal of publishing from the laptop, whose grounds were a token on disk and an unsigned package. The clause on trusted publishers in *a definition is proved by two strangers* falls with it, and a new package's first version goes the same way as every other.
+
+**What stands.** Codeberg as the source, GitHub as a mirror by two push URLs, `@beltype` on npm and not GitHub Packages, Egildo's yes for each version, everything public, siblings meeting by exact version.
+
+**The cost is said here.** A package on npm carries no attestation, so a pinned version proves its source only through the tag that names it, which is what the integration review asked about. A reader who needs more can compare the tarball with a checkout of the tag. This returns if a customer asks for attestations, by the same workflow, and not before.
