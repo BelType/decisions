@@ -34,6 +34,8 @@ prosemirror-beltype proves it under `CiceroPage`: a faced table that fits keeps 
 
 Spreads keeps `tableView: false` as an option, and the studio turns the table view back on after the merges, on Egildo's word. The studio's buffer over the frame stays for a divided table, chosen by reading the wrapper's `placed` attribute, and the studio's sheet makes spreads' grid draw at `toDOM`'s box.
 
+A divided block's drawing takes no caret in the view: its wrapper stays `contenteditable="false"` as a stand-in's always was, since the inside of a node view without a content hole is opaque to the editor whether the face is placed or not, and a host that wants its divided block edited edits it through the host's own door, as the studio's buffer does.
+
 The view's continuation page repeats no table header where print does, a 21 px difference measured the same day, present with or without the wrapper. It is prosemirror-beltype's row, not this record's, and nothing here assumes a repeated header.
 
 Foreclosed: a stand-in that pins a block's size, a face for a node across a cut, and a view that changes the cut to keep its face. Not foreclosed: a door for a divided block's state, if a host asks for one by name, and the overlay, which stays a host's pattern for what fragview refuses.
