@@ -1,6 +1,6 @@
 # Images are awaited at intake
 
-**Status: Decided 2026-09-18, Executed 2026-09-18.** Reported as [beltype#39](https://github.com/egildo/beltype/issues/39); the implementation pin `packages/essay/test/intake.test.js` was written first and read red before the change.
+**Status: Decided 2026-09-18, Executed 2026-09-18, Superseded by the first run waits for no picture.** Reported as [beltype#39](https://github.com/egildo/beltype/issues/39); the implementation pin `packages/essay/test/intake.test.js` was written first and read red before the change. 
 
 ## Context
 
@@ -71,3 +71,5 @@ The guards are the point. Had the settled reading begun with an image still load
 
 
 **Amendment, 2026-10-13.** The rim this record says is unbuilt is built at the seam ([*late truth is an edit*](late-truth-is-an-edit.md)), on the resumable run and not on `voidFrom` (deleted). A picture that becomes pending after the first run is now heard and resumed from; the await at intake remains a stand-in for the first run only, and a `loading="lazy"` picture is no longer skipped but made eager there, the limit the Decision stated being a hole (a lazy image with no box never loads, and a parked original has no box).
+
+**Superseded 2026-11-08** by [*the first run waits for no picture*](the-first-run-waits-for-no-picture.md): both awaits retired on a measurement (first paint 5.8 s against 0.74 s on a 59-page document with 60 late pictures), the lazy image still made eager, the rim resuming only where a picture moved its box.

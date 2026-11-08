@@ -1,6 +1,6 @@
 # Late truth is an edit
 
-**Status: Decided 2026-10-13, Executed 2026-10-13.** The first build of the live-values round (`.claude/plans/live-values/design.md` at the repository root, stage 1). Written for a Sonnet to build from; the predictions are frozen before anything runs.
+**Status: Decided 2026-10-13, Executed 2026-10-13.** The first build of the live-values round (`.claude/plans/live-values/design.md` at the repository root, stage 1). Written for a Sonnet to build from; the predictions are frozen before anything runs. Amended 2026-11-08 under Consequences: a picture is a signal only where it moved the box.
 
 ## Context
 
@@ -81,3 +81,5 @@ Built 2026-10-13 on `round/live-values`; the proof is `packages/essay/test/rim.t
 - **Measured.** Three fields in three paragraphs far apart, 60 words written into each after the event: before the amendment the Ledger stayed the first run's and no run followed; after it three resumes ran, earliest first, and the Ledger equals a whole run over the same DOM, default and composed. A cancelled event resumes nothing; an event naming a detached element resumes nothing and throws nothing.
 - **`rim.add` leaked.** `patch` re-calls `add` for a box it patched inside (the top-level box stays the same element) and for a box it replaced, and each call stacked another capturing pair of `load` and `error` listeners with nothing released. Measured: one image load announced twice after one patch, three times after two. `add(box, replaced)` now keeps a `Map<box, release>` and releases the replaced box's and the box's own before seating the new pair; `stop()` releases all of them.
 - No `src/` change; the battery is not moved by it and was not re-run.
+
+**Amended 2026-11-08: a picture's arrival is a signal only where it moved the box.** The measurement this record's Consequences left owed was taken on 2026-11-08, on a 59-page document with 60 images served late rather than on the manual: with the first-run await off the rim heard 60 loads and resumed 59 times, and no resume moved a cut, since every image had its size declared. Egildo ruled the same day ([*the first run waits for no picture*](the-first-run-waits-for-no-picture.md)): the rim judges a `load` or an `error` when the runs have ended, against the height the last run measured for the box, and a box drawn as itself at that height is no signal. A box the arrival grew or shrank resumes as before, one resume at the box. Decision four's default action is otherwise unchanged; the kind union is unchanged; the clone await inside a slice is outside this record and stays ([`seam/rim.ts`](https://codeberg.org/BelType/cicero/src/commit/b08c06ddd43655b2a7e4f7b2b1644ac0b9e49c5f/seam/rim.ts)).
