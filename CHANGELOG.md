@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **A block with no content hole is a face where it stands whole** (project, 2026-11-08): `prosemirror-fragview` admits a node view for a block whose view answers no `contentDOM`, drawn from `toDOM` and cut as print cuts it, the face placed only where the node stands whole in one page and the host told by `data-fragview-face="placed"`; one face per node, leaves included; no size pinned on a block. Extends *a fragmented view gives a leaf a node view*, which gains a line pointing here.
 - **A release moves three remotes at once, amended** (project, 2026-11-07): Egildo rules trusted publishing out. Every version is published by hand with his security key, by `scripts/release.sh`, from a clean checkout of HEAD, tests first and the tag last; the workflow, the tokens and the attestations go, and the cost is said in the record.
 - **A fragmented view gives a leaf a node view** (project, 2026-11-07): `prosemirror-fragview` admits a node view for a leaf only, shown once and kept across refills and pages, with a stand-in from `toDOM` in every measuring copy and in print; a block's node view is refused by name. Supersedes, for leaves, the choice in the Codeberg issue on node views.
 - **The same list prints the same bytes, amended a third time** (project, 2026-11-04): under Caster's opt-in `convertImages: 'cmyk'` an image may be converted to the output intent's CMYK in the page, after its reduction, through the vendored Little-CMS, and reaches the list as `DeviceCMYK` samples; the list goes to version 7, and the definition is cut at 7.0.0.
