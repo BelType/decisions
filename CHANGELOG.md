@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **The run keeps time, amended** (cicero, 2026-11-08): Egildo rules that the long-lived host clears what it has read. A host that runs the engine more than once in one page clears the `cicero:` measures and marks after each settle, once it has read them; the engine writes and never clears; `prosemirror-beltype` is the first such host.
 - **A block with no content hole is a face where it stands whole** (project, 2026-11-08): `prosemirror-fragview` admits a node view for a block whose view answers no `contentDOM`, drawn from `toDOM` and cut as print cuts it, the face placed only where the node stands whole in one page and the host told by `data-fragview-face="placed"`; one face per node, leaves included; no size pinned on a block. Extends *a fragmented view gives a leaf a node view*, which gains a line pointing here.
 - **A release moves three remotes at once, amended** (project, 2026-11-07): Egildo rules trusted publishing out. Every version is published by hand with his security key, by `scripts/release.sh`, from a clean checkout of HEAD, tests first and the tag last; the workflow, the tokens and the attestations go, and the cost is said in the record.
 - **A fragmented view gives a leaf a node view** (project, 2026-11-07): `prosemirror-fragview` admits a node view for a leaf only, shown once and kept across refills and pages, with a stand-in from `toDOM` in every measuring copy and in print; a block's node view is refused by name. Supersedes, for leaves, the choice in the Codeberg issue on node views.

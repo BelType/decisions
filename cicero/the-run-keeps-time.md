@@ -1,6 +1,6 @@
 # The run keeps time
 
-**Status: Decided 2026-09-25, Executed 2026-09-25.**
+**Status: Decided 2026-09-25, Executed 2026-09-25.** Amended 2026-11-08 under Consequences: the long-lived host clears what it has read.
 
 ## Context
 
@@ -27,3 +27,5 @@ The one change of shape the marks needed: `measure.js`'s `awaitCloneImages` retu
 ## Consequences
 
 The pin goes red because `src/` bytes moved, and the battery is not run for it: a `performance.measure` call cannot reach a page, and `awaitCloneImages`'s return value is read only by the measure. The first readings — the synthetic book, BelType's own manual, and the BGD manual on the CLI and in the editing tools' pane under both modes, with the Paged.js number beside them — are in the checklist's *Book-scale benchmark* record and in `packages/essay/RESULTS.md`'s observations; the round's changelog entry carries the recommendation for the next round. The Cast-off's bound is still a tablet question and gets its own design round.
+
+**Added 2026-11-08: the long-lived host clears what it has read** (Egildo's ruling the same day). The browser keeps every User Timing entry for the page's life, and a run writes about a dozen measures per page per fill. The CLI's run ends; an editor's does not, so a long session in an editor accumulates entries without limit. A host that runs the engine more than once in one page therefore owns the entries it caused: once it has read what it wants, after each settle, it clears the `cicero:` measures, by `performance.clearMeasures(name)` per name or by prefix over `getEntriesByType('measure')`, and the `cicero:` marks the same way (the presenter leaves one, `cicero:idle-built`). The engine is unchanged: it writes and never clears, so a profiler reading the buffer after a single run still sees everything, and the Performance panel, which records its own trace, is untouched by any clearing. `prosemirror-beltype` is the first such host.
