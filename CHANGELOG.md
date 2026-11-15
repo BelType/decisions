@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Bare body content is refused by name** (cicero, 2026-11-14): text, an inline-level box and a `display: contents` box standing directly in the body are refused at intake, each named with its remedy; white space, a comment, a `display: none` box and a line break are passed over, the line break on purpose (ruled 2026-11-15), its space dropped where a page ends at it; a host that hands the run its own boxes is not asked.
 - **The first run waits for no picture** (cicero, 2026-11-08): the intake's and the driver's image awaits retired on a measurement, a lazy image still made eager, the rim resuming only where a picture moved its box, the clone await kept until the Service Worker case is measured. Supersedes *images are awaited at intake*; *late truth is an edit* gains the clause.
 - **The intake passes over machinery** (cicero, 2026-11-08): the one filter passes over the tags that never render and over an element carrying the `host` word on `data-beltype`; the `root` option stays the first door.
 - **A facsimile with no alt warns for an editor** (cicero, 2026-11-08): `install` takes `{ missingAlt: 'refuse' | 'warn' }`, default refuse; under warn the source is told once and its copy carries no role and no label, so the print refuses as before.
