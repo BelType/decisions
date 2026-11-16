@@ -32,7 +32,7 @@ The collapse candidates are closed by measurement. `display: none` on a hollow r
 - **Estimating the widths decision-side** — table layout is an algorithm in the browser; computing it ourselves is a second layout engine, which I5 forbids.
 - **Hollowing the feed too, so the two agree.** The feed is the one that matches the browser's print, which lays the whole table out; the fragment is what must reproduce it. `neverCutInside` exists to keep the feed whole in these boxes for that reason.
 - **Fixing only the table**, the table round's scope. A grid loses words by the same cause; the sibling probe found it and the flex row drifts. One premise, one clause.
-- **A cache of widths across pages.** C7 is a lemma about runs of equal content width; a width change suspends it, and the literals are re-read per fragment.
+- **A cache of widths across pages.** C7 is a lemma about runs of equal content width; a width change suspends it, and the literals are re-read per fragment. *(Reopened 2026-11-16 by [the columns of a table count every row on every page](the-columns-of-a-table-count-every-row-on-every-page.md): a later page's feed has put the printed rows away and measures the table without them, 5 pages against Chromium's 6 on a table whose widest cell is in its first row; the columns are kept per table and per content width.)*
 
 ## Predictions, frozen on write
 
