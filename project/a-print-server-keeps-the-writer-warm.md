@@ -20,6 +20,8 @@ A CLI print with forme, the Rust writer, was slower than with the TypeScript wri
 
 Refused: Chromium's code cache (measured not to help); a native write in the CLI (measured slower to reach than to write); a context per document (cold writes).
 
+**Amended 2026-11-16.** Ruling 3's last sentence no longer holds for a host that asks: under an option, off by default, the worker keeps one `Writer` and the blobs it has checked, font programs above all, by the hash that names each. The list, the file and the records are still never kept. The record is [*the warm writer may keep the blobs it has checked*](the-warm-writer-may-keep-the-blobs-it-has-checked.md).
+
 ## Consequences
 
 The plan's four stages: Caster first (a host may hand `print()` a writer port, and without one nothing changes), then `beltype serve`, then the warm-up, restarts and limits, then the measurements and the manual's page. Its gates: the server's file equals `beltype print`'s for the same document and flags with the date fixed, under both writers; a print survives a forced Chromium crash; a print over a limit is refused by name.
