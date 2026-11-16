@@ -31,6 +31,8 @@ Three options were laid out.
 
 **A host that hands the run its own boxes is not asked.** The refusal reads the body only when the run read the blocks itself; an editor built on the engine answers for what it supplies.
 
+**Narrowed 2026-11-16.** An inline-level box that holds atoms and no word, an `<img>`, an inline `<svg>`, an `inline-block` box, a `<picture>` or an `<a>` around an image, is no longer refused: [*an atom in the body is a line of the body*](an-atom-in-the-body-is-a-line-of-the-body.md) reads it as one unit of the flow. Text, a box with `display: contents` and an inline-level box holding a word are refused as this record says.
+
 The refusal is `refuseBareContent` in `src/scope.ts`, called by the seam's intake and by the run when it reads the body, and the cases are `test/scope.test.ts` and `test/browser/scope.browser.ts`.
 
 ## Consequences
