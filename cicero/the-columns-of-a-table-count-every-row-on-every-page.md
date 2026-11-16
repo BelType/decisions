@@ -1,6 +1,6 @@
 # The columns of a table count every row on every page
 
-**Status: Decided 2026-11-16.** Egildo's ruling of the day, "reopen it", on a finding of 2026-11-15 and the reading of the canon he asked for. It reopens one refused alternative of [*the fragment lays out under the feeds' conditions*](the-fragment-lays-out-under-the-feeds-conditions.md), "a cache of widths across pages", and leaves the rest of that record standing. Not built.
+**Status: Decided 2026-11-16, Executed 2026-11-16.** Egildo's ruling of the day, "reopen it", on a finding of 2026-11-15 and the reading of the canon he asked for. It reopens one refused alternative of [*the fragment lays out under the feeds' conditions*](the-fragment-lays-out-under-the-feeds-conditions.md), "a cache of widths across pages", and leaves the rest of that record standing. Built on Cicero's main the same day ([`CHANGELOG.md`](https://codeberg.org/BelType/cicero/src/commit/da8e2edcba9bb32b0e89cbab9e90c29291532fbe/CHANGELOG.md)), not yet released; the verdict is at the foot.
 
 ## Context
 
@@ -42,3 +42,27 @@
 **What it owes.** A case, red first, for each probe; the round; the verdict; a dated line on the earlier record, written with this one.
 
 **What it touches on the tablet.** *The Oracle*: where the text names no column widths at a break, Chromium's print is evidence, and here it agrees with the one reading the text allows.
+
+## Verdict, 2026-11-16
+
+**Built, and the two questions answered.**
+
+- **How the whole table is laid out at a width.** No page's feed holds a table whole, the first page's included: a feed is cut at a bound past the page's end, and the rows past the bound are put away like the rows already printed. The Context's sentence that the page where a table starts "has it for nothing" was wrong; that page was right on the probe only because the wide cell stood in its first row. So the engine lays out the whole top-level block that holds a table, deep and with no interval, once per content width, in the page's own measure context, and reads every table's columns off it. The numbers are kept for the run, by block and by content width (`columnsOf` in [`src/driver.ts`](https://codeberg.org/BelType/cicero/src/commit/da8e2edcba9bb32b0e89cbab9e90c29291532fbe/src/driver.ts)).
+- **Whether a later page's feed is itself pinned.** Yes, and every page's: each table a feed shows is written the whole table's columns before the feed is laid out, divided or not, since which table a page will divide is not known until it is. The page is then decided under the widths its fragment is written, and the fragments take the same numbers by the path they always had.
+
+**The predictions.**
+
+1. **Held.** The first probe is cut in 6 pages, the rows Chromium's print holds on each, the second column at one place on every page (258.08 px against Chromium's 258.41, inside the case's half pixel).
+2. **Held in substance, and its count was wrong.** As a case the second probe prints 6 pages in Chromium and in the engine, not 7: the case's cells carry a bold token the probe of the Context lacked, and the rows moved. The second column stands at 281.61 px on the landscape page and 258.08 on every portrait page, against Chromium's 282.00 and 258.41.
+3. **Held as far as it was run.** The essay's claims are all green and unchanged. The manual's routes table was not looked at.
+4. **Held.** The essay's battery reads the same on Cicero's main before the merge and on the branch: every claim, every page count, and every verdict of the web platform tests under both printers. The page pictures were not compared, since the essay holds no goldens for Cicero 0.1.15.
+
+**What the round found beside.**
+
+- **A pinned cell changed its box sizing, and with it its height.** The earlier record writes `box-sizing: border-box` on each pinned cell, which also turns a declared `height` into a border box: the first row of every fragment stood shorter by its padding and borders than the row the page was decided on (a 40 px header cell with 1 px borders: 40 px presented, 42 measured). With the feed pinned too, six cases of rows of declared height moved off Chromium's cuts. The whole layout now reads what each content-box cell's padding and borders take, and the width is written in the cell's own sizing; a cell nobody read is written as before. The earlier record carries a dated line.
+- **Composed mode was wrong on the first page too**, by another cause this mechanism also removes: the Compositor's line hints stand in the feed, and a column sized over hinted lines is narrower (303.28 px against 258.41).
+- **The body's own margin is not on the engine's pages.** Chromium's print keeps the default 8 px inside the page area and the engine's pages hold the body's children directly, so a table that fills the width is 15.5 px wider in the engine. The cases zero the margin; the finding is open and is no part of this record.
+
+**The cases.** Five shapes, each in both modes, in [`test/browser/table-continuation.browser.ts`](https://codeberg.org/BelType/cicero/src/commit/da8e2edcba9bb32b0e89cbab9e90c29291532fbe/test/browser/table-continuation.browser.ts): the two probes, and three written 2026-11-09 on the left edge of a continuation, which waited on this ruling.
+
+**Not measured.** What the extra layout costs on a long table. One run of the essay printed in 24.2 s against 17.0 s, on a loaded machine; a timing is owed before a release.
