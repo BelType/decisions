@@ -31,7 +31,9 @@ veraPDF checks the namespace and the containment and none of these four "shall"s
 
 ## Consequences
 
-**The bytes of a file holding a quotation, code, a table of contents, a footnote with a call or a link inside the document change**, under both writers, and the two writers' files must stay equal byte for byte. Its pages do not change: the tags are not drawn.
+**The bytes of a file holding a quotation, code, a table of contents, a footnote with a call or a link inside the document change**, under both writers. Its pages do not change: the tags are not drawn.
+
+**Corrected 2026-11-17**, the day it was written: this paragraph said the two writers' files must stay equal byte for byte. They are not equal today and are not held to that. forme also writes the file's identifier and the Well-Tagged PDF declarations, and it is held to the readers, which must read the same document out of both files. What this ruling asks of the two is the same tree: the same types, namespaces and `Ref` entries.
 
 **What a reader's software gains.** A screen reader can announce a quotation and code as such, and can follow a contents entry to its heading and a call to its note and back.
 
