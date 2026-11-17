@@ -1,6 +1,6 @@
 # The older tag names are written in the older namespace
 
-**Status: Decided 2026-11-17.** Egildo's rulings of the day. On the tags of the PDF standards Caster is to offer: "we should have well picked fallbacks in both cases". And of two orders laid before him, PDF/A-4 first or the tags first, described to him as restoring code, quotations, the contents and the footnote's links under the PDF/UA-2 claim Caster already makes: "Tags first". The picks below are the survey's of the same day, each run through veraPDF 1.30.4 and run again by the session that wrote this. Builds on [PDF/UA-2 is a flag, not a given](pdf-ua-2-is-a-flag-not-a-given.md) and on [the same list prints the same bytes](the-same-list-prints-the-same-bytes.md), and corrects a finding both writers were built on.
+**Status: Decided 2026-11-17, Executed 2026-11-17.** Built in forme ([`16483ee`](https://codeberg.org/BelType/forme/src/commit/16483ee147019dd50ee440a00c25226245556f9f/CHANGELOG.md)) and in Caster ([`01343b5`](https://codeberg.org/BelType/caster/src/commit/01343b5086b9ab37a3b4ffb6f0b20f4ec4fd2db9/CHANGELOG.md), proposition S108 of its `DESIGN.md`); released 2026-11-17 in `@beltype/caster` 0.2.9, which `@beltype/cli` 0.1.13 pins. Egildo's rulings of the day. On the tags of the PDF standards Caster is to offer: "we should have well picked fallbacks in both cases". And of two orders laid before him, PDF/A-4 first or the tags first, described to him as restoring code, quotations, the contents and the footnote's links under the PDF/UA-2 claim Caster already makes: "Tags first". The picks below are the survey's of the same day, each run through veraPDF 1.30.4 and run again by the session that wrote this. Builds on [PDF/UA-2 is a flag, not a given](pdf-ua-2-is-a-flag-not-a-given.md) and on [the same list prints the same bytes](the-same-list-prints-the-same-bytes.md), and corrects a finding both writers were built on.
 
 ## Context
 
@@ -34,6 +34,19 @@ veraPDF checks the namespace and the containment and none of these four "shall"s
 **The bytes of a file holding a quotation, code, a table of contents, a footnote with a call or a link inside the document change**, under both writers. Its pages do not change: the tags are not drawn.
 
 **Corrected 2026-11-17**, the day it was written: this paragraph said the two writers' files must stay equal byte for byte. They are not equal today and are not held to that. forme also writes the file's identifier and the Well-Tagged PDF declarations, and it is held to the readers, which must read the same document out of both files. What this ruling asks of the two is the same tree: the same types, namespaces and `Ref` entries.
+
+**As built, 2026-11-17.** Four things the ruling did not settle were settled in the building, and are written out in Caster's S108.
+
+- Where ISO/TS 32005 forbids an older type in the place it stands, the flat type stays: a `<blockquote>` inside a table cell or a paragraph is still a `Div`, a `<code>` inside a link within the document a `Span`, a `<q>` directly in a section a `Span`, and a link within the document that stands directly in a section, or holds code, a quotation or a block, a `Link`. Which is written is decided after pruning, from the parent the element ends with.
+- Every `Reference` carries a `Ref` to its target, not a contents entry's alone.
+- A link within the document whose target is a footnote is that footnote's call, so `role="doc-noteref"` needs no reading of its own, and a call under Paged.js is a `Reference`.
+- The title of the belt's contents stays a heading beside the `TOC`, not inside it.
+
+Not handled: leaders an author writes with `content`, which the standard wants as artifacts, and a contents entry whose link holds a formula.
+
+**Measured 2026-11-17.** veraPDF 1.30.4 under its `ua2` profile passes the re-recorded paper specimen, which now holds five `Reference` elements and both namespaces, and two new fixtures of every construct, under both writers. The essay's eighteen chapters keep every claim and every page count, and the web platform tests under Caster read as before: css-page 50 pass, 25 fail and 138 refused of 213, css-break 20, 12 and 32 of 64. By the testbench's probe of the server, the unreleased Caster against the released one in four short runs of each, alternated, on a machine in use: every row within 0.5 %, a bill by data 197.7 against 197.2 a minute, the paper 228.2 against 228.1. A back-to-back pair of whole runs before it was disturbed midway and is not the measure.
+
+**Found on the way, not fixed.** Caster's `identity check`, a script outside its suite, already failed before this change: two recorded files, `roads` and `cast-divided-row`, no longer match under Cicero 0.1.16. It needs a deliberate re-record.
 
 **What a reader's software gains.** A screen reader can announce a quotation and code as such, and can follow a contents entry to its heading and a call to its note and back.
 
