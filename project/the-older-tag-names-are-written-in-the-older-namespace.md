@@ -23,6 +23,7 @@ veraPDF checks the namespace and the containment and none of these four "shall"s
 - **The table, for a PDF 2.0 file.** `<blockquote>` is a `BlockQuote`. `<code>` is a `Code`, and a `<pre>` stays the `P` it is, so a fenced block is a `P` holding a `Code`. `<q>` is a `Quote`. All three in the 1.7 namespace; every other element stays where it is, in the 2.0 one.
 - **A table of contents** is a `TOC`, each of its entries a `TOCI`, and the entry's link a `Reference` carrying a `Ref` to the structure element of its target. A list nested in an entry is a `TOC` nested in the `TOCI`. What marks a table of contents is the author's declaration, `role="doc-toc"` of the Digital Publishing ARIA module, read by the walk as it reads every declared role; the Markdown belt's own `nav.toc-page` counts as the same declaration.
 - **A footnote and its call.** Where the page holds a call to a note, the call carries a `Ref` to the `FENote`, the `FENote` a `Ref` to each of its calls, and the call's link names the note by a structure destination. Where a note stands in the text with nothing referring to it, it carries no `Ref`. A footnote's `FENote` carries `NoteType /Footnote`.
+- **A link inside the document is a `Reference`**, in the 1.7 namespace, and a link out of it stays a `Link`. Ruled later the same day, 2026-11-17, on the question left open when this record was first written: PDF/UA-2 says the `Reference` type "should be used for intra-document targets" (8.2.5.20), and asked whether to follow it Egildo answered "Yes, Reference". Inside means what the standard means, the target and not the spelling: a link whose address resolves to a place in this document.
 - **The display list carries it.** An element of the list names its namespace where it is not the 2.0 one, and the elements it refers to. Both writers write what the list says: a second `Namespace` object only in a file that uses a 1.7 type, a `Ref` array only on an element that has one. A file that holds none of these constructs is byte for byte what it was.
 - **The other direction is the same table read backwards**, and is built with the PDF 1.7 family, not now: in a 1.7 file `Em`, `Strong` and `Aside` are custom names role-mapped to `Span`, `Span` and `Div`, a footnote is a `Note` with its own `/ID`, and the types above need no namespace at all.
 
@@ -30,13 +31,12 @@ veraPDF checks the namespace and the containment and none of these four "shall"s
 
 ## Consequences
 
-**The bytes of a file holding a quotation, code, a table of contents or a footnote with a call change**, under both writers, and the two writers' files must stay equal byte for byte. Its pages do not change: the tags are not drawn.
+**The bytes of a file holding a quotation, code, a table of contents, a footnote with a call or a link inside the document change**, under both writers, and the two writers' files must stay equal byte for byte. Its pages do not change: the tags are not drawn.
 
 **What a reader's software gains.** A screen reader can announce a quotation and code as such, and can follow a contents entry to its heading and a call to its note and back.
 
 **What it leaves open.**
 
-- Whether a link inside the document is a `Reference` where today it is a `Link`. PDF/UA-2 says "should" (8.2.5.20); it is Egildo's ruling and is not taken here, except inside a table of contents, where the `Reference` is what carries the `Ref`.
 - Mathematics as MathML (8.2.5.29), which waits on the feature for carrying an attached file.
 - GitHub-flavoured Markdown's notes, a list at the document's end with a link back from each: they are endnotes by the same clause and are not touched by this ruling.
 - `<kbd>` and `<samp>`, which stay a `Span`: the standard leaves "what is considered as code" to the author, and a key to press is not a fragment of a program.
