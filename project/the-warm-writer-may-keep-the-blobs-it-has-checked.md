@@ -1,6 +1,6 @@
 # The warm writer may keep the blobs it has checked
 
-**Status: Decided 2026-11-16.** Egildo's ruling of the day: "We can flag an option to keep fonts". Amends [*a print server keeps the writer warm*](a-print-server-keeps-the-writer-warm.md), whose third ruling said a long-lived worker keeps "never a document's data". Built in forme ([`10b3cf8`](https://codeberg.org/BelType/forme/src/commit/10b3cf80fc63bc22b43b089ec5b7369ace52b75c/CHANGELOG.md)), in Caster ([`289c218`](https://codeberg.org/BelType/caster/src/commit/289c2183a70902b56c66afd2eeb58e60f7f9f72f/CHANGELOG.md), proposition S104 of its `DESIGN.md`, amended) and in the CLI as `beltype serve --keep-fonts`; not yet released when this was written.
+**Status: Decided 2026-11-16, Executed 2026-11-17.** Egildo's ruling of the day: "We can flag an option to keep fonts". Amends [*a print server keeps the writer warm*](a-print-server-keeps-the-writer-warm.md), whose third ruling said a long-lived worker keeps "never a document's data". Built in forme ([`10b3cf8`](https://codeberg.org/BelType/forme/src/commit/10b3cf80fc63bc22b43b089ec5b7369ace52b75c/CHANGELOG.md)), in Caster ([`289c218`](https://codeberg.org/BelType/caster/src/commit/289c2183a70902b56c66afd2eeb58e60f7f9f72f/CHANGELOG.md), proposition S104 of its `DESIGN.md`, amended) and in the CLI as `beltype serve --keep-fonts`; released 2026-11-17 in `@beltype/caster` 0.2.8 and `@beltype/cli` 0.1.12.
 
 ## Context
 
@@ -25,6 +25,8 @@ Two options were laid before him: keep the fonts in the worker, checked once on 
 ## Consequences
 
 **Measured 2026-11-16 and 17**, through `beltype serve` on one kept page, the paper and a bill in turn, on a machine that was not quiet: with the option on, the paper's write step went from 29 ms to 18 and the bill's from 12 to 9, on the module built for speed ([*the Rust writer is built for speed*](the-rust-writer-is-built-for-speed.md)). 48 files, the released packages against the new ones with the option off and with it on, are byte for byte the same.
+
+**Measured again 2026-11-17, on a quiet machine**, by the testbench's probe of the server (three rounds, the unreleased packages mounted, the option off and then on). The option is worth 4 % more papers a minute and about 2 % more bills: the paper from 230 to 239 a minute with one client and from 565 to 589 with four workers and four clients; a bill by data from 194 to 198 and from 631 to 643. CPU a document: the paper 0.360 s to 0.347, a bill by data 0.369 to 0.363. The step-by-step gain above is real and small against a whole print.
 
 **One behaviour differs with the option on.** If the page's bytes under a key were changed after the page hashed them, the page does not send them, since the worker already holds that key, and the print succeeds with the bytes the key names. With the option off the changed bytes cross and are refused. The key is the page's own hash of the array it holds, and nothing in Caster writes to a font program after it is read, so no print is known to meet this.
 

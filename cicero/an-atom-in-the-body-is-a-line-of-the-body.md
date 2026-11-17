@@ -1,6 +1,6 @@
 # An atom in the body is a line of the body
 
-**Status: Decided 2026-11-16.** Egildo's ruling of the day, on the refusal of an `<img>` standing directly in the body: "let's fix the img refusal. Makes no sense and blocks a specimen". It narrows [*bare body content is refused by name*](bare-body-content-is-refused-by-name.md), which stands for everything else it names. Built on Cicero's main ([`002dc12`](https://codeberg.org/BelType/cicero/src/commit/002dc1269a6cc7288346181e1f7d33040fa77fcd/CHANGELOG.md)), not yet released when this was written.
+**Status: Decided 2026-11-16, Executed 2026-11-17.** Egildo's ruling of the day, on the refusal of an `<img>` standing directly in the body: "let's fix the img refusal. Makes no sense and blocks a specimen". It narrows [*bare body content is refused by name*](bare-body-content-is-refused-by-name.md), which stands for everything else it names. Built on Cicero's main ([`002dc12`](https://codeberg.org/BelType/cicero/src/commit/002dc1269a6cc7288346181e1f7d33040fa77fcd/CHANGELOG.md)); released 2026-11-17 in `@beltype/cicero` 0.1.16, which `@beltype/cli` 0.1.12 pins.
 
 ## Context
 
