@@ -21,6 +21,8 @@ Two answers were laid before him: invisible text alone, the smallest round, or i
 - **A declared ink keeps its own colour and takes the computed alpha**: a transparent run with a CMYK hint is still invisible.
 - **The display list carries the alpha in the fill**, absent when 1, and moves to version 8. Both writers write it, byte for byte alike.
 
+**Corrected 2026-11-18, the day it was written.** The line above says both writers write the alpha "byte for byte alike". That is wrong, and the session that wrote it is at fault: the two writers have never written the same bytes from one list (`paper.pdf` is 111 114 bytes from the TypeScript writer and 95 441 from forme), and [the same list prints the same bytes](the-same-list-prints-the-same-bytes.md) holds forme to what the readers find, operator by operator, word by word and pixel by pixel, not to the other writer's bytes. The alpha is held to that.
+
 ## Consequences
 
 **A file with no transparent or translucent text or rule prints the same bytes as before**, under both writers. A file that has them changes where they stand: what printed black is now invisible, and what printed opaque is now translucent.
