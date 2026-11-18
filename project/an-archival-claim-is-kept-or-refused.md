@@ -37,6 +37,8 @@ The survey of the same day, by an agent, ran forme's nineteen files too and patc
 - **Every file carries the file identifier**, under both writers.
 - **A transparency group names the managed colour space where colour management is on.** Today it says plain device colour even then.
 
+**A document that names no colour profile, ruled 2026-11-18.** The seven questions did not cover it, and the build found it: with colour management off a file has no output intent, so its device colour means nothing under the claim. Two answers were laid before him, that Caster writes its own sRGB profile as the output intent whenever `a-4` is asked for, or that `a-4` is refused unless the author supplies a profile; he answered "Yes, sRGB". So `a-4` turns the colour objects on, a document that names no profile gets the sRGB one Caster already carries, and `colour: 'off'` together with `a-4` is refused by name. The second answer would have left most authors unable to print PDF/A-4 at all, since Caster ships no CMYK profile.
+
 On the three questions of colour he answered "a" once; it was read as all three and he was told so in the same breath.
 
 ## Consequences
