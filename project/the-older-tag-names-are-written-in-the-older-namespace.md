@@ -58,3 +58,5 @@ Not handled: leaders an author writes with `content`, which the standard wants a
 - `<article>` as `Art`, measured to pass and asked for by nobody.
 
 **What it touches on the tablet.** A refusal by name stays the answer where the printer cannot say what a thing is. Here it could, and said less than it knew.
+
+**Ruled 2026-11-18**: the other direction is [a PDF 1.7 file reads the tag table backwards](a-pdf-1-7-file-reads-the-tag-table-backwards.md), which adds that a 1.7 file carries no `Ref` array, the key being new in PDF 2.0, and no Well-Tagged PDF declaration.

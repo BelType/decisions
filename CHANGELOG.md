@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- **The PDF 1.7 family joins the list** (project, 2026-11-18): `ua-1`, `a-2b`, `a-2u`, `a-2a` and `pdf-1.7` on Caster's `standard`; one version per file and one PDF/A member per list, each refused by name; the default stays `ua-2`. Amends *the standard is a list*.
+- **A guess lowers PDF/A-2a to PDF/A-2u** (project, 2026-11-18): the claim about meaning goes with the guess, the archival part is still kept or refused.
+- **A broken heading sequence withdraws PDF/UA-1** (project, 2026-11-18): a first heading that is not `H1` or a skipped level withdraws the claim and warns by heading; nothing is renumbered.
+- **A PDF 1.7 file reads the tag table backwards** (project, 2026-11-18): the other direction of *the older tag names are written in the older namespace*, built; no `Ref` arrays and no Well-Tagged PDF declarations in a 1.7 file.
 - **The warm writer may keep the blobs it has checked** (project, 2026-11-16): under an option, off by default, the shared writer worker keeps the font programs and pictures it has hashed and the page sends only what it lacks. Amends *a print server keeps the writer warm*.
 - **The Rust writer is built for speed** (project, 2026-11-16): `opt-level = 3`, the same files, the budget raised to 1 600 000 bytes. Amends the ceiling of *the same list prints the same bytes*.
 - **An atom in the body is a line of the body** (cicero, 2026-11-16): a run of inline-level boxes directly in the body that holds atoms and no word, an image, an inline SVG, an `inline-block` box, a `<picture>` or an `<a>` around an image, is read as the one line of its anonymous block box and moved whole as a monolith; nothing is wrapped. Narrows *bare body content is refused by name*, which keeps text, `display: contents` and an inline box holding words.
