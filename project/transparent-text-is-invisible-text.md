@@ -1,6 +1,6 @@
 # Transparent text is invisible text
 
-**Status: Decided 2026-11-18.** Egildo's ruling of the day, "Invisible text plus true alpha", the second of two options laid before him. Builds on [the same list prints the same bytes](the-same-list-prints-the-same-bytes.md) and [an archival claim is kept or refused](an-archival-claim-is-kept-or-refused.md).
+**Status: Decided 2026-11-18, Executed 2026-11-18.** Built in forme ([`8636301`](https://codeberg.org/BelType/forme/src/commit/8636301dbe09330330732b62098ae50f1c7a54c9/CHANGELOG.md)) and in Caster ([`6eb616d`](https://codeberg.org/BelType/caster/src/commit/6eb616d8ae8113844f65c5c5a5caf9ac2e6b1f26/CHANGELOG.md), proposition S110 of its `DESIGN.md`); released 2026-11-18 in `@beltype/caster` 0.2.12, which `@beltype/cli` 0.1.16 pins. Egildo's ruling of the day, "Invisible text plus true alpha", the second of two options laid before him. Builds on [the same list prints the same bytes](the-same-list-prints-the-same-bytes.md) and [an archival claim is kept or refused](an-archival-claim-is-kept-or-refused.md).
 
 ## Context
 
@@ -30,3 +30,7 @@ Two answers were laid before him: invisible text alone, the smallest round, or i
 **To be measured in the build**: that text under a fill alpha passes veraPDF under the PDF/A-4 and PDF/UA-2 profiles, under both writers, and that invisible text stays extractable and tagged.
 
 **Not in this ruling**: `-webkit-text-stroke`, and the gradient `background-clip: text` paints through the glyphs. What Caster paints for the second, behind the now invisible text, was not checked.
+
+**Measured 2026-11-18.** Caster's suite, 554 tests, has no failure under either writer; its nine new cases print a transparent run, a translucent one beside an opaque one, a transparent and a red fill colour, a transparent run with a CMYK ink, and a transparent and a quarter-alpha rule, and run veraPDF 1.30.4 under the PDF/UA-2 profile and, under both claims, the PDF/A-4 profile: no failed rule under either writer. The transparent words are extracted from the file and are in the structure tree; a page of only invisible text renders white. The two writers agree on the new cases operator for operator, word for word and within the lines in pixels. Every committed list and every fixture printed afresh prints the same bytes as before the round, under both writers. The essay's eighteen chapters and the web platform tests under Caster read exactly as under Caster 0.2.11. Not raced on the testbench: the change adds a colour read per run and no bytes for ordinary text.
+
+**Not in the build**: colours the browser computes in `color(…)` or `oklch(…)` notation are still read as they were, wrongly; SVG `fill-opacity`; `-webkit-text-stroke`.
