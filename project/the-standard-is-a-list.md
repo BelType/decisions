@@ -1,6 +1,6 @@
 # The standard is a list
 
-**Status: Decided 2026-11-17.** Egildo's ruling of the day, the first of seven on PDF/A-4, each laid before him with two options and answered one by one; to this one he answered "a". Amends [PDF/UA-2 is a flag, not a given](pdf-ua-2-is-a-flag-not-a-given.md), whose flag held one claim and said a PDF/A claim would be "a new value when a customer asks for one". The claim it makes room for first is in [an archival claim is kept or refused](an-archival-claim-is-kept-or-refused.md).
+**Status: Decided 2026-11-17, Executed 2026-11-18.** Built in forme ([`1169f6c`](https://codeberg.org/BelType/forme/src/commit/1169f6ca93093635220ab406dbb32c282aaff6f3/CHANGELOG.md)) and in Caster ([`39d5c2f`](https://codeberg.org/BelType/caster/src/commit/39d5c2ff8b8d2ac64e336531bf8014fcbae3480f/CHANGELOG.md), proposition S109 of its `DESIGN.md`); released 2026-11-18 in `@beltype/caster` 0.2.10, which `@beltype/cli` 0.1.14 pins. Egildo's ruling of the day, the first of seven on PDF/A-4, each laid before him with two options and answered one by one; to this one he answered "a". Amends [PDF/UA-2 is a flag, not a given](pdf-ua-2-is-a-flag-not-a-given.md), whose flag held one claim and said a PDF/A claim would be "a new value when a customer asks for one". The claim it makes room for first is in [an archival claim is kept or refused](an-archival-claim-is-kept-or-refused.md).
 
 ## Context
 
@@ -25,6 +25,8 @@ Two shapes were laid before him: the flag becomes a list, as Typst's `--pdf-stan
 ## Consequences
 
 **The spelling is the build's.** How the list is written on Caster's input, on the CLI's `--set` and in the display list is not ruled here, only that the old values keep their meaning.
+
+**As built, 2026-11-18.** On Caster's input and on the CLI's `caster.standard` the list is written `'ua-2'`, `'a-4'`, `'ua-2,a-4'` or `'none'`; Caster's input also takes the list itself, `['ua-2', 'a-4']` in any order, and `[]` for `'none'`. In the display list the archival claim is `info.archival: 'pdfa4'` beside `info.conformance`, and the list keeps its version, 7. The refusal of a list that mixes PDF 1.7 and PDF 2.0 members is not written: no 1.7 member exists yet to refuse.
 
 **A new member is a new ruling**, with its own measurement, as the earlier record said of a new value.
 

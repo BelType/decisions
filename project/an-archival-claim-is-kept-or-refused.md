@@ -1,6 +1,6 @@
 # An archival claim is kept or refused
 
-**Status: Decided 2026-11-17.** Egildo's rulings of the day on PDF/A-4, six of the seven laid before him one by one, each with two options; to each he answered "a". The first of the seven is its own record, [the standard is a list](the-standard-is-a-list.md), which this one stands on. Builds on [PDF/UA-2 is a flag, not a given](pdf-ua-2-is-a-flag-not-a-given.md) and on [the same list prints the same bytes](the-same-list-prints-the-same-bytes.md).
+**Status: Decided 2026-11-17, Executed 2026-11-18.** Built in forme ([`1169f6c`](https://codeberg.org/BelType/forme/src/commit/1169f6ca93093635220ab406dbb32c282aaff6f3/CHANGELOG.md)) and in Caster ([`39d5c2f`](https://codeberg.org/BelType/caster/src/commit/39d5c2ff8b8d2ac64e336531bf8014fcbae3480f/CHANGELOG.md), proposition S109 of its `DESIGN.md`); released 2026-11-18 in `@beltype/caster` 0.2.10, which `@beltype/cli` 0.1.14 pins. Egildo's rulings of the day on PDF/A-4, six of the seven laid before him one by one, each with two options; to each he answered "a". The first of the seven is its own record, [the standard is a list](the-standard-is-a-list.md), which this one stands on. Builds on [PDF/UA-2 is a flag, not a given](pdf-ua-2-is-a-flag-not-a-given.md) and on [the same list prints the same bytes](the-same-list-prints-the-same-bytes.md).
 
 ## Context
 
@@ -46,6 +46,21 @@ On the three questions of colour he answered "a" once; it was read as all three 
 **The bytes change once for every file of the TypeScript writer**, which gains the identifier, and for every file of either writer that holds transparency under colour management. Their pages do not change. A file that does not ask for `a-4` is otherwise what it was.
 
 **To be measured in the build, and brought back if it fails**: that a file may hold the archive's output intent and the print shop's on one profile and still pass. The survey passed a file with the archive's alone.
+
+**Measured in the build, 2026-11-18: it passes.** A file holding the archive's output intent and the print shop's on one profile passes veraPDF 1.30.4 under its PDF/A-4 profile, under both writers, and under its PDF/UA-2 profile too where both claims are made.
+
+**As built, 2026-11-18.** Written out in Caster's S109.
+
+- Under `a-4` the information dictionary is removed whole, and the XMP carries the title and the dates.
+- `a-4` turns colour management on, and `colour: 'off'` beside `a-4` is refused by name.
+- forme accepts an RGB output profile, which it refused before, so the sRGB profile of a document that names none is written by either writer.
+- What counts as CMYK for the refusal: declared inks, process and spot, `blackText: '100k'`, a CMYK vector paint or gradient, the print marks, a picture's DeviceCMYK samples and a four-component JPEG.
+
+**Measured 2026-11-18.** Caster's suite, 545 tests, has no failure under either writer, and its new cases run veraPDF under the PDF/A-4 profile on every file that makes the claim. Printed through `@beltype/cli` 0.1.14 by the session that released it: a document that names no colour profile passes PDF/A-4 under `a-4`, passes PDF/A-4 and PDF/UA-2 under both claims, and under `ua-2` alone fails PDF/A-4, as it should. The essay's eighteen chapters keep every claim, with the one known red, and the web platform tests under Caster read as before: css-page 50 pass, 25 fail and 138 refused of 213, css-break 20, 12 and 32 of 64. By the testbench's probe of the server, the unreleased Caster against the released one in four short runs of each, alternated, on a machine in use: no row slower outside the spread of one variant's own runs, the means between 2.0 % under and 6.3 % over the released, where the released bills by folder alone ran from 143.7 to 180.0 a minute. The identifier's SHA-256 on the paper's 111 114 bytes takes 0.2 ms.
+
+**Not checked in the build**: a colour-managed render in any viewer (the pages were compared by poppler at 60 dpi alone, 37 of them identical before and after), the other readers Caster is held to, and forme's replay of recorded lists. Caster's `identity check`, a script outside its suite that was already failing on two files, now differs on every file by the identifier and needs a deliberate re-record.
+
+**Left for the CLI.** `X-Beltype-Standard` and `beltype print`'s line do not name the archival claim: Caster's report carries the PDF/UA-2 claim alone, so a file printed under `a-4` reads `pdf-2.0`.
 
 **Owed after this.**
 
