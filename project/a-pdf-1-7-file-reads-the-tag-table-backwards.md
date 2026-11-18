@@ -25,3 +25,5 @@ forme writes two Well-Tagged PDF declarations in the XMP of a PDF/UA-2 file. Wel
 **A PDF 2.0 file is not touched**: a list with no 1.7 member prints the bytes it prints today.
 
 **What it touches on the tablet.** One table, read in two directions, so that a quotation is a quotation in either version and nothing is flattened to fit.
+
+**As built, 2026-11-19.** PDF/UA-1 asks that every link annotation be the child of a `Link` element (veraPDF's PDF/UA-1 rule 7.18.5), which a `Reference` owning its link directly breaks; the paper's five contents entries failed it. In a 1.7 file a `Reference` that owns a link therefore holds one `Link`, which owns the words and the annotation, and the `Reference` keeps its name as ruled. Proposed to Egildo with the build on 2026-11-19 as the shape to keep; he has not ruled on it, and it stands as built until he does. The only PDF 2.0 types the walk makes that PDF 1.7 lacks are the three named under Decision, so the role map holds those three alone.
