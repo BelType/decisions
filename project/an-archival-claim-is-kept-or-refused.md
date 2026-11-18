@@ -62,6 +62,8 @@ On the three questions of colour he answered "a" once; it was read as all three 
 
 **Left for the CLI.** `X-Beltype-Standard` and `beltype print`'s line do not name the archival claim: Caster's report carries the PDF/UA-2 claim alone, so a file printed under `a-4` reads `pdf-2.0`.
 
+**Done 2026-11-18**, the day it was written, on Egildo's "Yes, name it": Caster's report says `archival: 'pdfa4'` where the file claims PDF/A-4 ([`1903c32`](https://codeberg.org/BelType/caster/src/commit/1903c3237aa792e8a0a463c9a72a3f3091719d39/CHANGELOG.md), `@beltype/caster` 0.2.11), and `@beltype/cli` 0.1.15 reads it, so the line and the header read `pdf-2.0; pdf-ua-2; pdf-a-4` under both claims and `pdf-2.0; pdf-a-4` under `a-4` alone. No file's bytes change.
+
 **Owed after this.**
 
 - A round that reads a placed PDF page against the rules, so the refusal can be lifted. A scanned annex in an archival document is an ordinary need. Accepting a placed file because it declares itself PDF/A was considered and set aside: a declaration is not a check.
