@@ -26,3 +26,13 @@ Refused: attaching only. A BelType invoice would then need a second tool after t
 
 - The specification is to be on the machine before anything is built, and a validator for the invoice beside veraPDF; Mustang is the one the sources name. Neither is there.
 - **A note on where this serves.** Factur-X and ZUGFeRD are the French and German form. In Italy the invoice of record is the FatturaPA XML sent through the exchange system, and a PDF with that XML inside is a courtesy copy, which the attachment rulings of the same day already serve without this one. Said to Egildo with the rulings; he ruled this one in with the rest.
+
+**Read 2026-11-19, the day of the ruling and after it: the reference implementation, not the specification.** Both forums hand the specification out through a form that asks a name and an email address, which is Egildo's to fill, so it is still not on the machine. On his yes, Mustang 2.26.0, the open-source implementation and validator the sources name, was put there (its command-line jar, checked against its release's SHA-256, and its source at the same tag) and its source read. What it writes and what its validator demands, which settles two of the three open points as far as an implementation can:
+
+- **The relationship** is `Alternative`, and `Data` for the profiles MINIMUM and BASIC WL, which its source cites to the specification's technical supplement, part A, on the data relationship. So the German convention is the one the reference implementation writes; what the French text allows beside it is still unread.
+- **PDF/A-4f is not admitted** by its validator: a file that is not PDF/A-3, at level a, b or u, is an error by name. So `factur-x` stands on a PDF/A-3 member alone, which is what ruling 1 says.
+- **The attached file** is `factur-x.xml`, typed `text/xml`, under the `F` and `UF` keys, with a description; a file at the XRechnung profile is `xrechnung.xml`.
+- **The metadata** is four properties in the namespace `urn:factur-x:pdfa:CrossIndustryDocument:invoice:1p0#` under the prefix `fx`: `DocumentType` (`INVOICE`), `DocumentFileName`, `Version` and `ConformanceLevel`, with the PDF/A extension schema that describes them.
+- **The profile is declared in the XML** as a guideline identifier, one per profile, seven in that release: MINIMUM, BASIC WL, BASIC, EN 16931, EXTENDED, the French EXTENDED-CTC-FR and XRechnung. Ruling 3 reads it there.
+
+**Still not read:** the specification's own text, and with it whatever it says that the implementation does not do.
