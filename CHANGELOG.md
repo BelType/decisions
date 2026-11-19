@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- The four records of the PDF 1.7 family marked executed (2026-11-19: forme's main, `@beltype/caster` 0.2.13, `@beltype/cli` 0.1.17), and *a mail merge seats the template for every customer* given its release line.
 - **Attachments, five records for seven rulings** (project, 2026-11-19, "a to all"): *the files that carry a file join the list* (`a-3b`, `a-3u`, `a-3a`, `a-4f`); *a document names what it attaches* (`<link rel="attachment">`, the relationship in `data-pdf-relationship`); *an attachment is carried or the print is refused*; *Caster knows the invoice it carries* (`factur-x`, the specification not yet read); *a customer of a mail merge brings their own attachment*. Nothing built.
 - **A mail merge seats the template for every customer** (project, 2026-11-19): `beltype serve --merge-road` defaults to `seated`; `kept` and `fresh` stay as options; Caster takes back what it writes into the presented pages. From the soak of 2026-11-18 and its two faults of the kept road.
 - **The PDF 1.7 family joins the list** (project, 2026-11-18): `ua-1`, `a-2b`, `a-2u`, `a-2a` and `pdf-1.7` on Caster's `standard`; one version per file and one PDF/A member per list, each refused by name; the default stays `ua-2`. Amends *the standard is a list*.
